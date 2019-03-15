@@ -78,7 +78,8 @@ GameManager.prototype.addStartTiles = function () {
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
-    var value = Math.random() < 0.9 ? "Hydrogen" : "Deuteron";
+    // var value = Math.random() < 0.9 ? "Hydrogen" : "Deuteron";
+    var value = "Hydrogen";
     var tile = new Tile(this.grid.randomAvailableCell(), value, this.labels[value]);
 
     this.grid.insertTile(tile);
@@ -331,14 +332,14 @@ GameManager.prototype.fusionRules = {
   "Hydrogen":{"Hydrogen":"Deuteron",
 							"Deuteron":"3Helium"
 						 },
-  "3Helium":{"3Helium":"4Helium",
-							"4Helium":"7Beryllium"
+  "3Helium":{"3Helium":"4Helium"
+							// "4Helium":"7Beryllium"
 						},
   "4Helium":{"4Helium":"8Beryllium", // unstable decays into 2 4heliums
 						 "8Beryllium":"12Carbon",
 						 "12Carbon":"16Oxygen",
-						 "16Oxygen":"20Neon",
-						 "20Neon":"24Magnesium", // this is a killer!
+						//  "16Oxygen":"20Neon",
+						//  "20Neon":"24Magnesium", // this is a killer!
 						 "28Silicon":"32Sulfur",
 						 "32Sulfur":"36Argon",
 						 "36Argon":"40Calcium",
@@ -349,8 +350,8 @@ GameManager.prototype.fusionRules = {
 						},
   "16Oxygen":{"16Oxygen":"28Silicon", // + 4Helium
              },
-  "12Carbon":{"12Carbon":"20Neon", // + 4Helium (randomness)
-						 }
+  // "12Carbon":{"12Carbon":"20Neon", // + 4Helium (randomness)
+	// 					 }
 };
 
 GameManager.prototype.labels = {
@@ -397,21 +398,21 @@ GameManager.prototype.pointValues = {
 };
 
 GameManager.prototype.decay = {
-  "7Beryllium": {
-    "multipler": "3",
-    "to": "4Helium",
-		"points": -3
-  },
+  // "7Beryllium": {
+  //   "multipler": "3",
+  //   "to": "4Helium",
+	// 	"points": -3
+  // },
   "8Beryllium": {
     "multipler": "1",
     "to": "4Helium",
 		"points": -4
   },
-  "20Neon": {
-    "multipler": "2.5",
-    "to": "16Oxygen",
-		"points": -10
-  },
+  // "20Neon": {
+  //   "multipler": "2.5",
+  //   "to": "16Oxygen",
+	// 	"points": -10
+  // },
   "52Iron": {
     "multipler": "2",
     "to": "48Chromium",
